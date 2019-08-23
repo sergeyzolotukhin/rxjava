@@ -1,4 +1,4 @@
-package ua.in.sz.rxjava;
+package ua.in.sz.rxjava.producer.consumer;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
@@ -12,12 +12,11 @@ import java.util.concurrent.Executors;
 import java.util.stream.Stream;
 
 @Slf4j
-public class RxMain {
-
+public class RxProducerConsumer {
     public static void main(String[] args) throws InterruptedException {
         log.info("Start");
 
-        Observable<String> observable = Observable.fromIterable(RxMain::items)
+        Observable<String> observable = Observable.fromIterable(RxProducerConsumer::items)
                 .subscribeOn(scheduler("subscribe-%d"))
                 .observeOn(scheduler("observe-%d"));
 
