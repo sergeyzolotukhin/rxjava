@@ -8,20 +8,25 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 @Slf4j
-public class RxMain {
+public class ErrorHandling {
     public static void main(String[] args) {
-        Observable<String> observable = Observable.fromIterable(RxMain::events)
+        Observable<String> observable = Observable.fromIterable(ErrorHandling::events)
                 .filter(e -> e.getNo() % 2 == 0)
                 .map(EventDto::getName);
 
-        Disposable subscribe = observable.subscribe(e -> log.info("Receive: {}", e));
+        Disposable subscribe = observable.subscribe(
+                        e -> log.info("Receive: {}", e),
+                        e -> log.error("Error", e));
     }
 
     private static Iterator<EventDto> events() {
         return Stream.iterate(0, i -> i + 1)
                 .map(i -> EventDto.of("Event-" + i, i))
-                .limit(10)
+                .limit(2)
                 .peek(e -> log.info("Send: {}", e.getName()))
+                .peek(e -> {
+                    if (e.getNo() >= 1) throw new RuntimeException(e.getName());
+                })
                 .iterator();
     }
 

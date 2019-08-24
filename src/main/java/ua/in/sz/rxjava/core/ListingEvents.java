@@ -8,11 +8,14 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 @Slf4j
-public class RxMain {
+public class ListingEvents {
     public static void main(String[] args) {
-        Observable<String> observable = Observable.fromIterable(RxMain::events)
+        Observable<String> observable = Observable.fromIterable(ListingEvents::events)
                 .filter(e -> e.getNo() % 2 == 0)
-                .map(EventDto::getName);
+                .map(EventDto::getName)
+                .doOnNext(n -> log.info("On Next {}", n))
+                .doOnComplete(() -> log.info("Completed"))
+                .doOnSubscribe((d) -> log.info("Subscribe"));
 
         Disposable subscribe = observable.subscribe(e -> log.info("Receive: {}", e));
     }
