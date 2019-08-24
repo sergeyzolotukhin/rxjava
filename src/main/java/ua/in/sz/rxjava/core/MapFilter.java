@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 @Slf4j
-public class RxMain {
+public class MapFilter {
     public static void main(String[] args) {
-        Observable<String> observable = Observable.fromIterable(RxMain::events)
+        Observable<String> observable = Observable.fromIterable(MapFilter::events)
                 .filter(e -> e.getNo() % 2 == 0)
                 .map(EventDto::getName);
 
