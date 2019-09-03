@@ -10,7 +10,29 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RxPublishSubject {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        publishToManySubscribes();
+    }
+
+    private static void publishToManySubscribes() {
+        log.info("Start");
+
+        Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
+
+        PublishSubject<Object> subject = PublishSubject.create();
+
+        Disposable disposable1 = subject.subscribe((e) -> log.info("Receive 1: {}", e));
+        Disposable disposable2 = subject.subscribe((e) -> log.info("Receive 2: {}", e));
+        Disposable disposable3 = subject.subscribe((e) -> log.info("Receive 3: {}", e));
+
+        range1.subscribe(subject);
+
+        WaitUtils.wait(disposable1, disposable2, disposable3);
+
+        log.info("Source subscribe");
+    }
+
+    private static void subjectSubscribesOnTwoRange() {
         log.info("Start");
 
         Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);

@@ -10,12 +10,14 @@ final class WaitUtils {
         // No instance
     }
 
-    static void wait(Disposable disposable) {
-        while (!disposable.isDisposed()) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                log.error("Interrupted", e);
+    static void wait(Disposable ... disposables) {
+        for (Disposable disposable : disposables) {
+            while (!disposable.isDisposed()) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    log.error("Interrupted", e);
+                }
             }
         }
     }
