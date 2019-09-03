@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RxPublishSubject {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         publishToManySubscribes();
     }
 
