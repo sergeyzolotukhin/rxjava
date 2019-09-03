@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class RxPublishSubject {
+public class PublishSubjectMain {
 
     public static void main(String[] args) {
         publishToManySubscribes();
@@ -19,7 +19,7 @@ public class RxPublishSubject {
 
         Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
 
-        PublishSubject<Object> subject = PublishSubject.create();
+        io.reactivex.subjects.PublishSubject<Object> subject = io.reactivex.subjects.PublishSubject.create();
 
         Disposable disposable1 = subject.subscribe((e) -> log.info("Receive 1: {}", e));
         Disposable disposable2 = subject.subscribe((e) -> log.info("Receive 2: {}", e));
@@ -38,7 +38,7 @@ public class RxPublishSubject {
         Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
         Observable<Long> range2 = Observable.intervalRange(16, 4, 100, 250, TimeUnit.MILLISECONDS);
 
-        PublishSubject<Object> subject = PublishSubject.create();
+        io.reactivex.subjects.PublishSubject<Object> subject = io.reactivex.subjects.PublishSubject.create();
 
         log.info("Source subscribe");
 

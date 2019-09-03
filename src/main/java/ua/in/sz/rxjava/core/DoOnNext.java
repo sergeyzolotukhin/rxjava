@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 @Slf4j
-public class ListingEvents {
+public class DoOnNext {
     public static void main(String[] args) {
-        Observable<String> observable = Observable.fromIterable(ListingEvents::events)
+        Observable<String> observable = Observable.fromIterable(DoOnNext::events)
                 .filter(e -> e.getNo() % 2 == 0)
                 .map(EventDto::getName)
                 .doOnNext(n -> log.info("On Next {}", n))
