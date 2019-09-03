@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RxPublishSubject {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         log.info("Start");
 
         Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
@@ -24,17 +24,10 @@ public class RxPublishSubject {
         range1.subscribe(subject);
 
         Disposable disposable = subject.subscribe((e) -> log.info("Receive: {}", e));
-        wait(disposable);
+        WaitUtils.wait(disposable);
 
         log.info("End");
     }
-
-    private static void wait(Disposable disposable) throws InterruptedException {
-        while (!disposable.isDisposed()) {
-            Thread.sleep(500);
-        }
-    }
-
 /*
 Observable.fromIterable();
 Observable.fromPublisher();
