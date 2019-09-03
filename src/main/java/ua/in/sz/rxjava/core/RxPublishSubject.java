@@ -1,4 +1,4 @@
-package ua.in.sz.rxjava.producer.consumer;
+package ua.in.sz.rxjava.core;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
