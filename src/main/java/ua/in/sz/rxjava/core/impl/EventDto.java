@@ -1,4 +1,4 @@
-package ua.in.sz.rxjava.core;
+package ua.in.sz.rxjava.core.impl;
 
 
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @RequiredArgsConstructor(staticName = "of")
-class EventDto {
+public class EventDto {
     private final String name;
     private final int no;
 }

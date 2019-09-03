@@ -3,6 +3,7 @@ package ua.in.sz.rxjava.core;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
+import ua.in.sz.rxjava.core.impl.EventDto;
 
 import java.util.Iterator;
 import java.util.stream.Stream;
