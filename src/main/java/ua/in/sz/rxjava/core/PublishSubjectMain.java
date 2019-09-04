@@ -52,24 +52,4 @@ public class PublishSubjectMain {
 
         log.info("End");
     }
-/*
-Observable.fromIterable();
-Observable.fromPublisher();
-Observable.fromCallable();
-Observable.fromArray();
-Observable.fromFuture();
-
-Observable.just();
-Observable.generate();
-Observable.create();
-Observable.defer();
-Observable.interval();
-Observable.range();
-
-Observable.timer();
-Observable.using();// ?
-Observable.sequenceEqual(); //
-Observable.amb(); //?
-*/
-
 }
