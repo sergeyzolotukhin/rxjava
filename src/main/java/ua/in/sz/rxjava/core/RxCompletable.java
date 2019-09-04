@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-@SuppressWarnings("ResultOfMethodCallIgnored")
 public class RxCompletable {
     public static void main(String[] args) {
         log.info("Start");

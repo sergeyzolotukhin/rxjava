@@ -1,5 +1,6 @@
 package ua.in.sz.rxjava.core;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.subjects.PublishSubject;
@@ -17,17 +18,17 @@ public class PublishSubjectMain {
     private static void publishToManySubscribes() {
         log.info("Start");
 
-        Observable<Long> range1 = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
+        Observable<Long> range = Observable.intervalRange(0, 4, 100, 300, TimeUnit.MILLISECONDS);
 
         io.reactivex.subjects.PublishSubject<Object> subject = io.reactivex.subjects.PublishSubject.create();
 
-        Disposable disposable1 = subject.subscribe((e) -> log.info("Receive 1: {}", e));
-        Disposable disposable2 = subject.subscribe((e) -> log.info("Receive 2: {}", e));
-        Disposable disposable3 = subject.subscribe((e) -> log.info("Receive 3: {}", e));
+        subject.subscribe((e) -> log.info("Receive 1: {}", e));
+        subject.subscribe((e) -> log.info("Receive 2: {}", e));
+        subject.subscribe((e) -> log.info("Receive 3: {}", e));
 
-        range1.subscribe(subject);
+        range.subscribe(subject);
 
-        WaitUtils.wait(disposable1, disposable2, disposable3);
+        Completable.fromObservable(subject).blockingAwait();
 
         log.info("Source subscribe");
     }
@@ -45,8 +46,9 @@ public class PublishSubjectMain {
         range2.subscribe(subject);
         range1.subscribe(subject);
 
-        Disposable disposable = subject.subscribe((e) -> log.info("Receive: {}", e));
-        WaitUtils.wait(disposable);
+        subject.subscribe((e) -> log.info("Receive: {}", e));
+
+        Completable.fromObservable(subject).blockingAwait();
 
         log.info("End");
     }

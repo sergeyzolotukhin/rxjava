@@ -1,5 +1,6 @@
 package ua.in.sz.rxjava.core;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.annotations.NonNull;
@@ -12,13 +13,14 @@ public class Using {
     public static void main(String[] args) {
         log.info("Start");
 
-        WaitUtils.wait(
-                Observable.using(
-                        Using::openResource,
-                        Using::intervalRange,
-                        Using::closeResource
-                ).subscribe((e) -> log.info("Receive: {}", e))
+        Observable<Long> observable = Observable.using(
+                Using::openResource,
+                Using::intervalRange,
+                Using::closeResource
         );
+
+        observable.subscribe((e) -> log.info("Receive: {}", e));
+        Completable.fromObservable(observable).blockingAwait();
 
         log.info("End");
     }
