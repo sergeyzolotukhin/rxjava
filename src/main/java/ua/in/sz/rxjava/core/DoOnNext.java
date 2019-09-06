@@ -18,7 +18,7 @@ public class DoOnNext {
                 .doOnComplete(() -> log.info("Completed"))
                 .doOnSubscribe((d) -> log.info("Subscribe"));
 
-        Disposable subscribe = observable.subscribe(e -> log.info("Receive: {}", e));
+        observable.subscribe(e -> log.info("Receive: {}", e));
     }
 
     private static Iterator<EventDto> events() {

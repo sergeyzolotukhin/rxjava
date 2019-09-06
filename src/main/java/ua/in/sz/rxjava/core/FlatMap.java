@@ -14,7 +14,7 @@ public class FlatMap {
         Observable<String> observable = Observable.fromIterable(FlatMap::numbers)
                 .flatMap(FlatMap::children);
 
-        Disposable disposable = observable.subscribe(i -> log.info("Receive {}", i));
+        observable.subscribe(i -> log.info("Receive {}", i));
     }
 
     private static ObservableSource<String> children(String p) {

@@ -15,7 +15,7 @@ public class Merge {
 
         Observable<String> observable = Observable.merge(alphabet, numbers);
 
-        Disposable subscribe = observable.subscribe(e -> log.info("Receive: {}", e));
+        observable.subscribe(e -> log.info("Receive: {}", e));
     }
 
     private static Iterator<String> events() {

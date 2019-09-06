@@ -15,7 +15,7 @@ public class ErrorHandling {
                 .filter(e -> e.getNo() % 2 == 0)
                 .map(EventDto::getName);
 
-        Disposable subscribe = observable.subscribe(
+        observable.subscribe(
                         e -> log.info("Receive: {}", e),
                         e -> log.error("Error", e));
     }

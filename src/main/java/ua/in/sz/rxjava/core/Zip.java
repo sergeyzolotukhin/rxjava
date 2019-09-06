@@ -1,7 +1,6 @@
 package ua.in.sz.rxjava.core;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
@@ -15,7 +14,7 @@ public class Zip {
                 Observable.fromIterable(() -> human("woman", 5)),
                 (m, w) -> m + " + " + w);
 
-        Disposable disposable = observable.subscribe(i -> log.info("Receive {}", i));
+        observable.subscribe(i -> log.info("Receive {}", i));
     }
 
     private static Iterator<String> human(String prefix, int limit) {
