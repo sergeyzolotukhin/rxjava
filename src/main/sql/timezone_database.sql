@@ -14,7 +14,10 @@ CREATE TABLE time_table
 );
 
 insert into time_table (dt, tm, tm_tz, ts, ts_tz) values (now(), now(), now(), now(), now());
+insert into time_table (tm) values (now());
 select * from time_table;
+select tm from time_table;
+delete from time_table;
 
 show timezone;
 
@@ -24,6 +27,7 @@ show timezone;
 -- Europe/Helsinki UTC+2
 
 set timezone='Europe/Helsinki';
+set timezone='GMT';
 select now();
 create database default_database;
 
