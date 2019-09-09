@@ -33,3 +33,16 @@ create database default_database;
 
 alter database default_database set timezone = 'Europe/Helsinki';
 
+/*
+
+The PreparedStatement setTimestamp Javadoc states that:
+
+    With a Calendar object, the driver can calculate the timestamp taking into account a custom timezone.
+    If no Calendar object is specified, the driver uses the default timezone, which is that of the virtual machine running the application.
+
+While for the ResultSet getTimestamp method it says that:
+
+    This method uses the given calendar to construct an appropriate millisecond value for the timestamp if the underlying database does not store timezone information.
+
+ */
+
